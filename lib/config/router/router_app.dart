@@ -2,7 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:widgets_app/presentation/screens/screens.dart';
 
 final appRouter = GoRouter(
-  // ** Ruta initial de la app.
+  // ** Ruta initial de la app initialLocation.
   // ** Los path de las rutas deben ser unicos
   // ** Podemos agregarles nombres, pero se debe agregar a cada Screen una variable <static const String name>
   initialLocation: '/',
@@ -21,6 +21,11 @@ final appRouter = GoRouter(
       path: '/cards',
       name: CardsScreen.name,
       builder: (context, state) => const CardsScreen(),
+    ),
+    GoRoute(
+      path: '/progress',
+      name: ProgressScreen.name,
+      builder: (context, state) => const ProgressScreen(),
     ),
   ],
 );
