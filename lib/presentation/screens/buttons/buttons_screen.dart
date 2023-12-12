@@ -85,6 +85,7 @@ class _ButtonsView extends StatelessWidget {
               label: const Text("Text Button"),
             ),
             // TODO Custom Button
+            const CustomButton(),
             IconButton(
               onPressed: () {},
               icon: const Icon(
@@ -102,6 +103,37 @@ class _ButtonsView extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  const CustomButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme;
+    // ** ClipRRect permite los bordes redondeados
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Material(
+        color: color.primary,
+        // ** InkWell Permite la animacion al presionar
+        child: InkWell(
+          onTap: () {},
+          child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 10,
+              ),
+              child: Text(
+                "Custom Button",
+                style: TextStyle(
+                  color: color.onPrimary,
+                ),
+              )),
         ),
       ),
     );
