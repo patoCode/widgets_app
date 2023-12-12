@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:widgets_app/config/menu/menu_items.dart';
+import 'package:widgets_app/presentation/screens/buttons/buttons_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -16,12 +17,12 @@ class HomeScreen extends StatelessWidget {
 }
 
 class _HomeView extends StatelessWidget {
-  const _HomeView({super.key});
+  const _HomeView();
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      // Utilizaremos el <appMenuItems> definido anteriormente
+      //** Utilizaremos el <appMenuItems> definido anteriormente
       itemCount: appMenuItems.length,
       itemBuilder: (context, index) {
         final item = appMenuItems[index];
@@ -54,7 +55,15 @@ class _CustomListTile extends StatelessWidget {
       title: Text(item.title),
       subtitle: Text(item.subTitle),
       onTap: () {
-        // TODO navegar a otra pantalla
+        // ** PUSH Indica que apilaremos rutas
+        // ** REPLACE Tambien existe el replace, que lo que hace es destruir la view, para presentarla
+        // Navigator.of(context).push(
+        //   MaterialPageRoute(
+        //     builder: (context) => const ButtonsScreen(),
+        //   ),
+        // );
+        //** Usando named routes definidas en el MaterialApp
+        Navigator.pushNamed(context, item.link);
       },
     );
   }
