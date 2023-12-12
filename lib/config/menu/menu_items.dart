@@ -39,4 +39,10 @@ const appMenuItems = <MenuItem>[
     link: "/snackbars",
     icon: Icons.info_outline,
   ),
+  MenuItem(
+    title: "UI Controls + Titles",
+    subTitle: "Serie de controles en Flutter",
+    link: "/ui-controls",
+    icon: Icons.color_lens,
+  ),
 ];
