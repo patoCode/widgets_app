@@ -46,6 +46,19 @@ class _CardsView extends StatelessWidget {
             ),
           ),
 
+          ...cardsData.map(
+            (card) => _CardType3(
+              elevation: card['elevation'],
+              label: card['label'],
+            ),
+          ),
+          ...cardsData.map(
+            (card) => _CardType4(
+              elevation: card['elevation'],
+              label: card['label'],
+            ),
+          ),
+
           // ** Para brindarle mas espacio al final de ScrollView
           const SizedBox(
             height: 100,
@@ -132,6 +145,92 @@ class _CardType2 extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _CardType3 extends StatelessWidget {
+  final String label;
+  final double elevation;
+
+  const _CardType3({
+    required this.label,
+    required this.elevation,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme;
+    return Card(
+      color: color.surfaceVariant,
+      elevation: elevation,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.more_vert_rounded),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Text('$label - Filled'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _CardType4 extends StatelessWidget {
+  final String label;
+  final double elevation;
+
+  const _CardType4({
+    required this.label,
+    required this.elevation,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme;
+    return Card(
+      // ** clipBehavior: Clip.hardEdge -> permite Bordes redondeados
+      clipBehavior: Clip.hardEdge,
+      elevation: elevation,
+      child: Stack(
+        children: [
+          Image.network(
+            "https://picsum.photos/id/${elevation.toInt()}/600/350",
+            height: 350,
+            fit: BoxFit.cover,
+          ),
+          Align(
+            alignment: Alignment.topRight,
+            child: Container(
+              // ** decoration: BoxDecoration -> ära definir estilos inline
+              decoration: BoxDecoration(
+                color: color.onPrimary,
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                ),
+              ),
+              child: IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.more_vert_rounded),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Text('$label - Image'),
+          )
+        ],
       ),
     );
   }
