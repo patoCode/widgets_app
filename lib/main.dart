@@ -11,7 +11,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //** En materiaApp se debne si o si agregar el <.router>
+    //** En materiaApp se debe si o si agregar el <.router>
     return MaterialApp.router(
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,

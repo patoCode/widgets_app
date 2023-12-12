@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:widgets_app/config/menu/menu_items.dart';
 
 class HomeScreen extends StatelessWidget {
+  static const String name = 'home_screen';
+
   const HomeScreen({super.key});
 
   @override
@@ -67,6 +69,8 @@ class _CustomListTile extends StatelessWidget {
 
         //** Utiizando Go_ROUTER, fijate tambien que se minizaron los imports
         context.push(item.link);
+        // ** Por name, se utiliza simplemente la sig linea
+        // context.pushNamed(CardsScreen.name);
       },
     );
   }
