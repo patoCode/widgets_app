@@ -40,11 +40,16 @@ class _CardsView extends StatelessWidget {
             ),
           ),
           ...cardsData.map(
-            (card) => _CardType1(
+            (card) => _CardType2(
               elevation: card['elevation'],
               label: card['label'],
             ),
-          )
+          ),
+
+          // ** Para brindarle mas espacio al final de ScrollView
+          const SizedBox(
+            height: 100,
+          ),
         ],
       ),
     );
@@ -78,6 +83,52 @@ class _CardType1 extends StatelessWidget {
             Align(
               alignment: Alignment.bottomLeft,
               child: Text(label),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _CardType2 extends StatelessWidget {
+  final String label;
+  final double elevation;
+
+  const _CardType2({
+    required this.label,
+    required this.elevation,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme;
+
+    return Card(
+      // ** <RoundedRectangleBorder> es un decorador para los cards
+      shape: RoundedRectangleBorder(
+        side: BorderSide(
+          color: color.outline,
+        ),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(10),
+        ),
+      ),
+      elevation: elevation,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.more_vert_rounded),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Text('$label - OutLine'),
             )
           ],
         ),
