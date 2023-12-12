@@ -10,6 +10,7 @@ const colorList = <Color>[
   Colors.deepPurple,
   Colors.orange,
   Colors.indigo,
+  Colors.amberAccent
 ];
 
 class AppTheme {
