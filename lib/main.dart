@@ -24,14 +24,15 @@ class MainApp extends ConsumerWidget {
     final isDark = ref.watch(themeProvider);
     final selectColor = ref.watch(selectedIndexColorProvider);
 
+    // ** Definimos el controlador de estado para controlar el theme
+    final AppTheme appTheme = ref.watch(themeNotifierProvider);
+
     return MaterialApp.router(
       title: 'Flutter - Widgets App',
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
-      theme: AppTheme(
-        selectedColor: selectColor,
-        isDarkMode: isDark,
-      ).getTheme(),
+      // ** usaremos este estado para inicializar el theme
+      theme: appTheme.getTheme(),
     );
   }
 }

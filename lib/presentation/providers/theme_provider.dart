@@ -9,3 +9,14 @@ final colorListProvider = Provider((ref) => colorList);
 
 // ** Para guardar el indice del color seleccionado
 final selectedIndexColorProvider = StateProvider((ref) => 0);
+
+// ** <StateNotifierProvider> se usa cuando el estado qe se va a controlar es una clase
+// ** Esto significa <ThemeNotifier, Apptheme> ==> <Quien controla, De que tipo es la instancia de estado>
+final themeNotifierProvider = StateNotifierProvider<ThemeNotifier, AppTheme>(
+  (ref) => ThemeNotifier(),
+);
+
+class ThemeNotifier extends StateNotifier<AppTheme> {
+  // ** ThemeNotifier() : super(AppTheme()) ==> indica que al crear una instancia de ThemeNotifier, automaticamente se creara una instancia de AppTheme()
+  ThemeNotifier() : super(AppTheme());
+}
