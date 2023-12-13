@@ -10,7 +10,10 @@ class ThemeChangerScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isDarkMode = ref.watch(themeProvider);
+    // ** Esto sirve para el control conestados simples
+    // final isDarkMode = ref.watch(themeProvider);
+    // ** Utilizando un NotifierProvider se veria asi
+    final isDarkMode = ref.watch(themeNotifierProvider).isDarkMode;
 
     return Scaffold(
       appBar: AppBar(
@@ -20,13 +23,17 @@ class ThemeChangerScreen extends ConsumerWidget {
             padding: const EdgeInsets.only(right: 20),
             child: IconButton(
               onPressed: () {
-                ref.read(themeProvider.notifier).update(
-                      (isDarkMode) => !isDarkMode,
-                    );
+                // ** Esto sirve para el control conestados simples
+                // ref.read(themeProvider.notifier).update(
+                //       (isDarkMode) => !isDarkMode,
+                //     );
+                // ** Utilizando un NotifierProvider se veria asi
+                // !! Cuando usamos el NotifierProvider el metodo acaa es WATCH, no read
+                ref.watch(themeNotifierProvider.notifier).toggleDarkmode();
               },
               icon: isDarkMode
-                  ? const Icon(Icons.dark_mode_outlined)
-                  : const Icon(Icons.light_mode_outlined),
+                  ? const Icon(Icons.light_mode_outlined)
+                  : const Icon(Icons.dark_mode_outlined),
             ),
           ),
         ],
@@ -44,7 +51,11 @@ class _ThemeChangerView extends ConsumerWidget {
     // ** por si algun dia lo volvemos dinamico, es mejor siempre utilizar el <watch>
     final List<Color> colors = ref.watch(colorListProvider);
 
-    final selectedIndexColor = ref.watch(selectedIndexColorProvider);
+    // ** Esto sirve para el control conestados simples
+    // final selectedIndexColor = ref.watch(selectedIndexColorProvider);
+    // ** Con el NotifierProvider seria asi:
+    final int selectedIndexColor =
+        ref.watch(themeNotifierProvider).selectedColor;
 
     return ListView.builder(
       itemCount: colors.length,
@@ -69,9 +80,13 @@ class _ThemeChangerView extends ConsumerWidget {
           groupValue: selectedIndexColor,
           onChanged: (value) {
             print("VALOR SELECCIONADO $value");
-            ref
-                .read(selectedIndexColorProvider.notifier)
-                .update((state) => index);
+            // ** Esto sirve para el control conestados simples
+            // ref
+            //     .read(selectedIndexColorProvider.notifier)
+            //     .update((state) => index);
+            // ** Utilizando un NotifierProvider se veria asi
+            // !! Cuando usamos el NotifierProvider el metodo acaa es WATCH, no read
+            ref.watch(themeNotifierProvider.notifier).changeColorIndex(index);
           },
         );
       },

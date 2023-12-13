@@ -37,4 +37,16 @@ class AppTheme {
           centerTitle: true,
         ),
       );
+
+  // ** Esta funcion es muy comun en flutter.
+  // ** Copia la instancia de la clase
+  // ** los parametros de esta funcion son opcionales es por eso el ?
+  AppTheme copyWith({
+    int? selectedColor,
+    bool? isDarkMode,
+  }) =>
+      AppTheme(
+        selectedColor: selectedColor ?? this.selectedColor,
+        isDarkMode: isDarkMode ?? this.isDarkMode,
+      );
 }

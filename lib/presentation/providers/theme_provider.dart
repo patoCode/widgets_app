@@ -19,4 +19,13 @@ final themeNotifierProvider = StateNotifierProvider<ThemeNotifier, AppTheme>(
 class ThemeNotifier extends StateNotifier<AppTheme> {
   // ** ThemeNotifier() : super(AppTheme()) ==> indica que al crear una instancia de ThemeNotifier, automaticamente se creara una instancia de AppTheme()
   ThemeNotifier() : super(AppTheme());
+
+  // ** Esta funcion controlara el estado del togle de DarkMode, es el notifier que sera usado en el read cuando querramos acceder al estado
+  void toggleDarkmode() {
+    state = state.copyWith(isDarkMode: !state.isDarkMode);
+  }
+
+  void changeColorIndex(int selectedColor) {
+    state = state.copyWith(selectedColor: selectedColor);
+  }
 }
